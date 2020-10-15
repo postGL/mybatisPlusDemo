@@ -1,2 +1,2 @@
 # mybatisPlusDemo
-mybatisPlus练习
+mybatisPlus练习教程
