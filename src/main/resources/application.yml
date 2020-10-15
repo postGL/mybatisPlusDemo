@@ -1,25 +1,10 @@
 server:
-  port=2525
-
-# \u8BE5\u914D\u7F6E\u7684\u540D\u79F0\u662F\u56FA\u5B9A\u7684\uFF0C\u4E0D\u53EF\u4EE5\u6539\u53D8\uFF0C\u5426\u5219\u5C06\u4E0D\u80FD\u81EA\u52A8\u52A0\u8F7D\u5230\u6570\u636E\u6E90\u4E2D
+  port: 8888 #\u7AEF\u53E3\u53F7\uFF0C\u9ED8\u8BA4\u4E0D\u5199\u5C31\u662F8080
+  servlet:
+    context-path: /mybatisplus #\u9879\u76EE\u4E0A\u4E0B\u6587,\u5FC5\u987B\u8981\u4EE5\u201C/\u201D\u5F00\u5934
 spring:
   datasource:
-    # \u4F7F\u7528druid\u6570\u636E\u6E90
-    type:com.alibaba.druid.pool.DruidDataSource
-    driver-class-name:com.mysql.jdbc.Driver
-    url:jdbc:mysql://127.0.0.1:3306/mybatis_plus_demo?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
-    username:devuser
-    password:dev123
-    filters:stat
-    maxActive:20
-    initialSize:1
-    maxWait:60000
-    minIdle:1
-    timeBetweenEvictionRunsMillis:60000
-    minEvictableIdleTimeMillis:300000
-    validationQuery:select 1 FROM DUAL
-    testWhileIdle:true
-    testOnBorrow:false
-    testOnReturn:false
-    poolPreparedStatements:true
-    maxOpenPreparedStatements:20
+    username: root #\u6570\u636E\u5E93\u7528\u6237\u540D
+    password: root #\u6570\u636E\u5E93\u5BC6\u7801
+    url: jdbc:mysql://localhost:3306/mybatis_plus_demo?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver #\u76F4\u63A5\u6253mysql\u4F1A\u6709\u63D0\u793A
