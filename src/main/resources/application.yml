@@ -1,0 +1,25 @@
+server:
+  port=2525
+
+# \u8BE5\u914D\u7F6E\u7684\u540D\u79F0\u662F\u56FA\u5B9A\u7684\uFF0C\u4E0D\u53EF\u4EE5\u6539\u53D8\uFF0C\u5426\u5219\u5C06\u4E0D\u80FD\u81EA\u52A8\u52A0\u8F7D\u5230\u6570\u636E\u6E90\u4E2D
+spring:
+  datasource:
+    # \u4F7F\u7528druid\u6570\u636E\u6E90
+    type:com.alibaba.druid.pool.DruidDataSource
+    driver-class-name:com.mysql.jdbc.Driver
+    url:jdbc:mysql://127.0.0.1:3306/mybatis_plus_demo?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+    username:devuser
+    password:dev123
+    filters:stat
+    maxActive:20
+    initialSize:1
+    maxWait:60000
+    minIdle:1
+    timeBetweenEvictionRunsMillis:60000
+    minEvictableIdleTimeMillis:300000
+    validationQuery:select 1 FROM DUAL
+    testWhileIdle:true
+    testOnBorrow:false
+    testOnReturn:false
+    poolPreparedStatements:true
+    maxOpenPreparedStatements:20
