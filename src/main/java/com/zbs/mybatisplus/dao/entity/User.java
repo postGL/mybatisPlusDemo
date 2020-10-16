@@ -1,30 +1,50 @@
 package com.zbs.mybatisplus.dao.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
- * description: User
- * date: 2020/10/15 18:28
- * author: zhangbs
- * version: 1.0
- */
+* <p>
+* 
+* </p>
+*
+* @author zhangbs
+* @since 2020-10-16
+*/
 @Data
-@TableName(value = "user")
-public class User {
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@TableName("user")
+@ApiModel(value="User对象", description="")
+public class User extends Model<User> {
 
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private Long id;
+  private static final long serialVersionUID=1L;
 
-    @TableField(value = "姓名")
-    private String name;
+  @ApiModelProperty(value = "主键ID")
+  private Long id;
 
-    @TableField(value = "年龄")
-    private Integer age;
+  @ApiModelProperty(value = "姓名")
+  private String name;
 
-    @TableField(value = "邮箱")
-    private String email;
+  @ApiModelProperty(value = "年龄")
+  private Integer age;
+
+  @ApiModelProperty(value = "邮箱")
+  private String email;
+
+  @ApiModelProperty(value = "性别")
+  private Integer sex;
+
+
+  @Override
+  protected Serializable pkVal() {
+    return this.id;
+  }
+
 }
