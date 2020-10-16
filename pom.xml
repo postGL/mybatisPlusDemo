@@ -18,6 +18,23 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<repositories>
+		<!--远程仓库（私服），为项目配置配置一个远程仓库指向中央仓库的中国镜像-->
+		<repository>
+			<id>maven-net-cn</id>
+			<name>Maven China Mirror</name>
+			<url>http://maven.net.cn/content/groups/public/</url>
+			<!--true：告诉Maven可以从这个仓库下载releases版本的构件-->
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<!--false：不要从这个仓库下载snapshot版本的构件-->
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
