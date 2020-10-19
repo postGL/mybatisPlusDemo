@@ -1,13 +1,15 @@
 package com.zbs.mybatisplus.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zbs.mybatisplus.common.AjaxResult;
 import com.zbs.mybatisplus.dao.entity.User;
+import com.zbs.mybatisplus.qo.UserQO;
 import com.zbs.mybatisplus.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -24,16 +26,14 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    @Resource
+    @Autowired
     private IUserService userService;
 
-//    @ApiOperation(value = "分页查询列表")
-//    @GetMapping("/list")
-//    public PageInfo list(User user) {
-//        startPage();
-//        List<User> list = userService.selectPageList(user);
-//        return getDataTable(list);
-//    }
+    @ApiOperation(value = "分页查询列表")
+    @GetMapping("/list")
+    public AjaxResult list(Page<User> page, UserQO userQO) {
+        return AjaxResult.success(userService.selectPageList(page, userQO));
+    }
 
     @ApiOperation(value = "获取详情")
     @GetMapping(value = "/{id}")

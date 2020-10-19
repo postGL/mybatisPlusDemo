@@ -1,14 +1,16 @@
 package com.zbs.mybatisplus.dao.mapper;
 
-import com.zbs.mybatisplus.dao.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zbs.mybatisplus.dao.entity.User;
+import com.zbs.mybatisplus.qo.UserQO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author zhangbs
@@ -20,9 +22,9 @@ public interface UserMapper extends BaseMapper<User> {
     /**
      * 分页查询列表
      *
-     * @param user 
+     * @param userQO
      * @return 列表
      */
-    List<User> selectPageList(User user);
+    IPage<User> selectPageList(Page<?> page, @Param("u") UserQO userQO);
 
 }

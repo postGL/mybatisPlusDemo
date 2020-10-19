@@ -14,3 +14,8 @@ spring:
 logging:
   level:
     com.zbs.mybatisplus.dao: debug
+
+mybatis:
+mybatis-plus:
+  mapper-locations: classpath*:xml/*.xml
+  type-aliases-package: com.zbs.mybatisplus.dao.mapper

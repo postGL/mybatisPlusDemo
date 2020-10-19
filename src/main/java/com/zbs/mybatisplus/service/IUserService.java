@@ -1,13 +1,14 @@
 package com.zbs.mybatisplus.service;
 
-import com.zbs.mybatisplus.dao.entity.User;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-
-import java.util.List;
+import com.zbs.mybatisplus.dao.entity.User;
+import com.zbs.mybatisplus.qo.UserQO;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author zhangbs
@@ -18,8 +19,8 @@ public interface IUserService extends IService<User> {
     /**
      * 分页查询列表
      *
-     * @param user 
+     * @param userQO
      * @return 列表
      */
-    List<User> selectPageList(User user);
+    IPage<User> selectPageList(Page<User> page, UserQO userQO) ;
 }
