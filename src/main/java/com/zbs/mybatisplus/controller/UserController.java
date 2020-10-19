@@ -13,16 +13,16 @@ import java.util.List;
 
 /**
  * <p>
- *  controller
+ * controller
  * </p>
  *
  * @author zhangbs
  * @since 2020-10-16
  */
-@Api(tags = "")
+@Api(tags = "用户管理相关接口")
 @RestController
 @RequestMapping("/user")
-public class UserController{
+public class UserController {
 
     @Resource
     private IUserService userService;

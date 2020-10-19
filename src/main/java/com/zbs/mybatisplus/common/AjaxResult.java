@@ -1,5 +1,7 @@
 package com.zbs.mybatisplus.common;
 
+import com.zbs.mybatisplus.util.StringUtils;
+
 import java.util.HashMap;
 
 /**
@@ -53,9 +55,9 @@ public class AjaxResult extends HashMap<String, Object> {
     public AjaxResult(int code, String msg, Object data) {
         super.put(CODE_TAG, code);
         super.put(MSG_TAG, msg);
-//        if (StringUtils.isNotNull(data)) {
-//            super.put(DATA_TAG, data);
-//        }
+        if (StringUtils.isNotNull(data)) {
+            super.put(DATA_TAG, data);
+        }
     }
 
     /**
