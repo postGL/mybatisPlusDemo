@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zbs.mybatisplus.dao.entity.User;
-import com.zbs.mybatisplus.qo.UserQO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -22,9 +21,9 @@ public interface UserMapper extends BaseMapper<User> {
     /**
      * 分页查询列表
      *
-     * @param userQO
+     * @param user
      * @return 列表
      */
-    IPage<User> selectPageList(Page<?> page, @Param("u") UserQO userQO);
+    IPage<User> selectPageList(Page<?> page, @Param("u") User user);
 
 }

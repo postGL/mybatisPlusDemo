@@ -7,6 +7,7 @@ import com.zbs.mybatisplus.dao.entity.User;
 import com.zbs.mybatisplus.dao.mapper.UserMapper;
 import com.zbs.mybatisplus.qo.UserQO;
 import com.zbs.mybatisplus.service.IUserService;
+import com.zbs.mybatisplus.util.MyBeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         // 当 total 为小于 0 或者设置 setSearchCount(false) 分页插件不会进行 count 查询
         // 要点!! 分页返回的对象与传入的对象是同一个
 //        userMapper.selectPage()
-        return userMapper.selectPageList(page, userQO);
+        User user = MyBeanUtil.copyPropertiesNotNull(userQO, User.class);
+        return userMapper.selectPageList(page, user);
     }
 
 }
