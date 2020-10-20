@@ -23,8 +23,9 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("user表")
-@ApiModel(value = "User对象", description = "")
+@TableName("user")
+//这里的value必须时数据库字段名，否则INSERT INTO user表 ( id, 姓名, age, email, sex ) VALUES ( ?, ?, ?, ?, ? )
+@ApiModel(value = "User对象")
 public class User extends Model<User> {
 
     private static final long serialVersionUID = 1L;
@@ -34,7 +35,8 @@ public class User extends Model<User> {
     private Long id;
 
     @ApiModelProperty(value = "姓名")
-    @TableField(value = "姓名")
+    @TableField(value = "name")
+    //这里的value必须时数据库字段名，否则INSERT INTO user表 ( id, 姓名, age, email, sex ) VALUES ( ?, ?, ?, ?, ? )
     private String name;
 
     @ApiModelProperty(value = "年龄")
