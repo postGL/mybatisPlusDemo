@@ -1,4 +1,4 @@
-package com.zbs.mybatisplus.qo;
+package com.zbs.mybatisplus.beans.vo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -8,6 +8,9 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
+ * <p>
+ * </p>
+ *
  * @author zhangbs
  * @since 2020-10-16
  */
@@ -16,7 +19,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("user")
 @ApiModel(value = "User对象", description = "")
-public class UserQO {
+public class UserVO {
 
     private static final long serialVersionUID = 1L;
 

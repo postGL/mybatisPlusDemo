@@ -3,7 +3,7 @@ package com.zbs.mybatisplus.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zbs.mybatisplus.common.AjaxResult;
 import com.zbs.mybatisplus.dao.entity.User;
-import com.zbs.mybatisplus.qo.UserQO;
+import com.zbs.mybatisplus.beans.qo.UserQO;
 import com.zbs.mybatisplus.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
