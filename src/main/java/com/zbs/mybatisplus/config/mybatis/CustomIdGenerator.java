@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.Random;
 
 /**
- * description: CustomIdGenerator
+ * description: CustomIdGenerator 自定义ID生成策略
  * date: 2020/10/20 13:56
  * author: zhangbs
  * version: 1.0
