@@ -9,11 +9,12 @@
         <result column="age" property="age" />
         <result column="email" property="email" />
         <result column="sex" property="sex" />
+        <result column="is_delete" property="isDelete" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, age, email, sex
+        id, name, age, email, sex, is_delete
     </sql>
 
     <select id="selectPageList" resultMap="BaseResultMap">

@@ -1,9 +1,6 @@
 package com.zbs.mybatisplus.dao.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -47,6 +44,10 @@ public class User extends Model<User> {
 
     @ApiModelProperty(value = "性别")
     private Integer sex;
+
+    @ApiModelProperty(value = "是否删除,1：删除；0：未删除")
+    @TableLogic
+    private Integer isDelete;
 
     @Override
     protected Serializable pkVal() {

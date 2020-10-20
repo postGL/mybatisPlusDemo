@@ -15,7 +15,11 @@ logging:
   level:
     com.zbs.mybatisplus.dao: debug
 
-mybatis:
 mybatis-plus:
   mapper-locations: classpath*:xml/*.xml
   type-aliases-package: com.zbs.mybatisplus.dao.mapper
+  global-config:
+    db-config:
+      logic-delete-field: isDelete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
