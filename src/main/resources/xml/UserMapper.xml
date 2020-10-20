@@ -19,6 +19,7 @@
     <select id="selectPageList" resultMap="BaseResultMap">
         SELECT <include refid="Base_Column_List"></include>
         FROM  user
+        <where></where>
         <if test=" u.name != null and u.name != '' ">
             AND  name =#{u.name}
         </if>
