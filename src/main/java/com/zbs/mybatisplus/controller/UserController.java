@@ -1,9 +1,11 @@
 package com.zbs.mybatisplus.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zbs.mybatisplus.beans.qo.UserQO;
 import com.zbs.mybatisplus.common.AjaxResult;
 import com.zbs.mybatisplus.dao.entity.User;
+import com.zbs.mybatisplus.dao.mapper.UserMapper;
 import com.zbs.mybatisplus.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,6 +31,9 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @ApiOperation(value = "分页查询列表")
     @GetMapping("/list")
     public AjaxResult list(Page<User> page, UserQO userQO) {
@@ -38,8 +43,23 @@ public class UserController {
     @ApiOperation(value = "获取详情")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id) {
-        // 查询可以使用lambdaQuery()的方式查询
-//        User user = userService.lambdaQuery().eq(User::getId, id).one();
+        /**
+         * SELECT * FROM user WHERE id = 20
+         */
+
+        // 方式一：QueryWrapper
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id", id);
+        userMapper.selectList(queryWrapper);
+
+        // 方式二：QueryWrapper + lambda
+        QueryWrapper<User> queryWrapper2 = new QueryWrapper<>();
+        queryWrapper.lambda().eq(User::getId, id);
+        userMapper.selectList(queryWrapper2);
+
+        // 方式三：查询可以使用lambdaQuery()的方式查询
+        User user = userService.lambdaQuery().eq(User::getId, id).one();
+
         return AjaxResult.success(userService.getById(id));
     }
 
