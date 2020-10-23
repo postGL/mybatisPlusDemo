@@ -1,6 +1,5 @@
 package com.zbs.mybatisplus.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -52,10 +51,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         /**
          * 方式二：queryWrapper
          */
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("age", userQO.getAge());
-        queryWrapper.eq("sex", userQO.getSex());
-        Page<User> userPage2 = userMapper.selectPage(page, queryWrapper);
+//        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.eq("age", userQO.getAge());
+//        queryWrapper.eq("sex", userQO.getSex());
+//        Page<User> userPage2 = userMapper.selectPage(page, queryWrapper);
 
         /**
          * 方式三：xml sql+

@@ -1,5 +1,6 @@
 package com.zbs.mybatisplus.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zbs.mybatisplus.beans.qo.UserQO;
@@ -38,6 +39,28 @@ public class UserController {
     @GetMapping("/list")
     public AjaxResult list(Page<User> page, UserQO userQO) {
         return AjaxResult.success(userService.selectPageList(page, userQO));
+    }
+
+    @ApiOperation(value = "测试and和or")
+    @PostMapping(value = "/andOr")
+    public void testAndOr(@RequestBody @Valid User user) {
+        /**
+         * SELECT
+         *  a.*
+         * FROM
+         * 	user a
+         * WHERE
+         * 	a.sex == 1
+         * 	AND ( a.`name` = 'jack' OR a.age = '20' )
+         */
+        LambdaQueryWrapper<User> userQueryWrapper = new LambdaQueryWrapper<>();
+        userQueryWrapper.eq(User::getSex, user.getSex());
+        userQueryWrapper.and(i -> i
+                .eq(User::getName, user.getName())
+                .or()
+                .eq(User::getAge, user.getAge())
+        );
+
     }
 
     @ApiOperation(value = "获取详情")
