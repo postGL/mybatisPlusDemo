@@ -46,7 +46,7 @@ public class User extends Model<User> {
     private Integer sex;
 
     @ApiModelProperty(value = "是否删除,1：删除；0：未删除")
-    @TableLogic
+    @TableLogic(value = "1", delval = "0")
     private Integer isDelete;
 
     @Override
