@@ -60,6 +60,29 @@ public class UserController {
                 .or()
                 .eq(User::getAge, user.getAge())
         );
+        List<User> list = userMapper.selectList(userQueryWrapper);
+
+        /**
+         * SELECT
+         * 	a.*
+         * FROM
+         * 	user_info a
+         * WHERE
+         * 	a.sex <> 1
+         * 	AND ( (a.`name` = 'jack' AND a.age = '20') OR (a.email = '13888888888' OR a.age = '2') )
+         */
+        LambdaQueryWrapper<User> userQueryWrapper2 = new LambdaQueryWrapper<>();
+        userQueryWrapper2.ne(User::getSex, user.getSex());
+        userQueryWrapper2.and(i ->
+                (i.and(j -> j.eq(User::getName, user.getName()).eq(User::getAge, user.getAge())))
+                        .or(j -> j.eq(User::getEmail, user.getEmail()).or().eq(User::getAge, user.getAge()))
+        );
+        List<User> list2 = userMapper.selectList(userQueryWrapper2);
+    }
+
+    @ApiOperation(value = "测试gettOne")
+    @PostMapping(value = "/gettOne")
+    public void testGetOne(@RequestBody @Valid User user) {
 
     }
 
