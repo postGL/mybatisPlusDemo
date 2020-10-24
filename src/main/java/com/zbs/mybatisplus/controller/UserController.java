@@ -80,10 +80,15 @@ public class UserController {
         List<User> list2 = userMapper.selectList(userQueryWrapper2);
     }
 
-    @ApiOperation(value = "测试gettOne")
-    @PostMapping(value = "/gettOne")
-    public void testGetOne(@RequestBody @Valid User user) {
-
+    @ApiOperation(value = "测试getOne")
+    @PostMapping(value = "/getOne")
+    public void testGetOne() {
+        // 除了有getById进行主键查询。还有getOne方法
+        LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(User::getName,"张大侠");
+        // false：据 Wrapper，查询一条记录；有多个 result 是否抛出异常
+        // true(默认值)：默认取第一条数据返回，所以当我们查询为多条数据时，默认返回第一条
+        userService.getOne(lambdaQueryWrapper,false);
     }
 
     @ApiOperation(value = "获取详情")
