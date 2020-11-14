@@ -2,6 +2,7 @@ package com.zbs.mybatisplus.dao.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.zbs.mybatisplus.common.enums.SexEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -9,6 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -43,11 +45,17 @@ public class User extends Model<User> {
     private String email;
 
     @ApiModelProperty(value = "性别")
-    private Integer sex;
+    private SexEnum sex;
 
     @ApiModelProperty(value = "是否删除,1：删除；0：未删除")
     @TableLogic(value = "1", delval = "0")
     private Integer isDelete;
+
+    @ApiModelProperty(value = "更新时间")
+    private LocalDateTime updateTime;
+
+    @ApiModelProperty(value = "创建时间")
+    private LocalDateTime createTime;
 
     @Override
     protected Serializable pkVal() {

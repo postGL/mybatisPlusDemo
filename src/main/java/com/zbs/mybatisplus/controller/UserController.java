@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zbs.mybatisplus.beans.qo.UserQO;
 import com.zbs.mybatisplus.common.AjaxResult;
+import com.zbs.mybatisplus.common.enums.SexEnum;
 import com.zbs.mybatisplus.dao.entity.User;
 import com.zbs.mybatisplus.dao.mapper.UserMapper;
 import com.zbs.mybatisplus.service.IUserService;
@@ -85,10 +86,10 @@ public class UserController {
     public void testGetOne() {
         // 除了有getById进行主键查询。还有getOne方法
         LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(User::getName,"张大侠");
+        lambdaQueryWrapper.eq(User::getName, "张大侠");
         // false：据 Wrapper，查询一条记录；有多个 result 是否抛出异常
         // true(默认值)：默认取第一条数据返回，所以当我们查询为多条数据时，默认返回第一条
-        userService.getOne(lambdaQueryWrapper,false);
+        userService.getOne(lambdaQueryWrapper, false);
     }
 
     @ApiOperation(value = "获取详情")
@@ -115,14 +116,22 @@ public class UserController {
     }
 
     @ApiOperation(value = "新增")
-    @PostMapping
+    @PostMapping(value = "/add")
     public AjaxResult add(@RequestBody @Valid User user) {
         userService.save(user);
         return AjaxResult.success();
     }
 
+    @ApiOperation(value = "测试通用枚举")
+    @PostMapping(value = "/addUserEnum")
+    public AjaxResult addUserEnum() {
+        User user = new User().setAge(18).setName("zhangsan").setEmail("250@qq.com").setSex(SexEnum.MAN);
+        userService.save(user);
+        return AjaxResult.success();
+    }
+
     @ApiOperation(value = "修改")
-    @PutMapping
+    @PutMapping(value = "/edit")
     public AjaxResult edit(@RequestBody @Valid User user) {
         userService.updateById(user);
         return AjaxResult.success();

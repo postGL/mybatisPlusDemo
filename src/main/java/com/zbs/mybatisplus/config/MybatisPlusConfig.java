@@ -2,7 +2,9 @@ package com.zbs.mybatisplus.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,6 +18,11 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("com.zbs.mybatisplus.dao.mapper")
 public class MybatisPlusConfig {
 
+    /**
+     * 分页设置/分页插件
+     *
+     * @return
+     */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
@@ -27,4 +34,16 @@ public class MybatisPlusConfig {
         paginationInterceptor.setCountSqlParser(new JsqlParserCountOptimize(true));
         return paginationInterceptor;
     }
+
+    /**
+     * mybatis-plus，json转对象支持枚举
+     *
+     * @return
+     */
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer customizer() {
+        return builder -> builder.featuresToEnable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
+    }
+
+
 }
