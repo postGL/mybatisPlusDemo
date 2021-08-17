@@ -2,38 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zbs.mybatisplus.dao.mapper.UserMapper">
 
-    <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.zbs.mybatisplus.dao.entity.User">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="age" property="age" />
-        <result column="email" property="email" />
-        <result column="sex" property="sex" />
-        <result column="is_delete" property="isDelete" />
-    </resultMap>
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.zbs.mybatisplus.dao.entity.User">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="age" property="age"/>
+		<result column="email" property="email"/>
+		<result column="sex" property="sex"/>
+		<result column="is_delete" property="isDelete"/>
+	</resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
         id, name, age, email, sex, is_delete
     </sql>
 
-    <select id="selectPageList" resultMap="BaseResultMap">
-        SELECT <include refid="Base_Column_List"></include>
-        FROM  user
-        <where></where>
-        <if test=" u.name != null and u.name != '' ">
-            AND  name =#{u.name}
-        </if>
-        <if test=" u.age != null and u.age != '' ">
-            AND  age =#{u.age}
-        </if>
-        <if test=" u.email != null and u.email != '' ">
-            AND  email =#{u.email}
-        </if>
-        <if test=" u.sex != null and u.sex != '' ">
-            AND  sex =#{u.sex}
-        </if>
-        ORDER BY id DESC
-    </select>
+	<select id="selectPageList" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List"></include>
+		FROM user
+		<where>
+			<if test=" u.name != null and u.name != '' ">
+				AND name =#{u.name}
+			</if>
+			<if test=" u.age != null and u.age != '' ">
+				AND age =#{u.age}
+			</if>
+			<if test=" u.email != null and u.email != '' ">
+				AND email =#{u.email}
+			</if>
+			<if test=" u.sex != null and u.sex != '' ">
+				AND sex =#{u.sex}
+			</if>
+		</where>
+		ORDER BY id DESC
+	</select>
 
 </mapper>
