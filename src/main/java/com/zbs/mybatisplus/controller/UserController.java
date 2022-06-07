@@ -2,6 +2,7 @@ package com.zbs.mybatisplus.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zbs.mybatisplus.beans.qo.UserQO;
 import com.zbs.mybatisplus.common.AjaxResult;
@@ -119,6 +120,8 @@ public class UserController {
     @PostMapping(value = "/add")
     public AjaxResult add(@RequestBody @Valid User user) {
         userService.save(user);
+        // 即使user对象不传id值，在save保存值后，user对象的id会被赋予新值返回
+        System.out.println(user);
         return AjaxResult.success();
     }
 
@@ -134,6 +137,16 @@ public class UserController {
     @PutMapping(value = "/edit")
     public AjaxResult edit(@RequestBody @Valid User user) {
         userService.updateById(user);
+        return AjaxResult.success();
+    }
+
+    @ApiOperation(value = "条件保存并更新")
+    @PutMapping(value = "/saveOrUpdate")
+    public AjaxResult saveOrUpdate(@RequestBody User user) {
+        LambdaUpdateWrapper<User> wrapper = new LambdaUpdateWrapper<>();
+        wrapper.eq(User::getAge, user.getAge())
+                .eq(User::getName, user.getName());
+        userService.saveOrUpdate(user, wrapper);
         return AjaxResult.success();
     }
 
