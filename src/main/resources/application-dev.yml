@@ -1,3 +1,4 @@
+# 当bootstrap指定环境后，application-dev.yml会比application.yml的优先级高
 server:
   port: 9999
   servlet:
