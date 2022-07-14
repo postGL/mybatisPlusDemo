@@ -8,26 +8,20 @@ import com.zbs.mybatisplus.dao.entity.User;
 import com.zbs.mybatisplus.dao.mapper.UserMapper;
 import com.zbs.mybatisplus.service.IUserService;
 import com.zbs.mybatisplus.util.MyBeanUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  * <p>
  * 服务实现类
  * </p>
- *
  * @author zhangbs
  * @since 2020-10-16
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
-    @Autowired
-    private UserMapper userMapper;
-
     /**
      * 分页查询列表
-     *
      * @param userQO
      * @return 列表
      */
@@ -61,7 +55,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
          * 方式
          */
         User user = MyBeanUtil.copyPropertiesNotNull(userQO, User.class);
-        return userMapper.selectPageList(page, user);
+        return baseMapper.selectPageList(page, user);
     }
 
 }
