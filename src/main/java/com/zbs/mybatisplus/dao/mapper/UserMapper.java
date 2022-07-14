@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zbs.mybatisplus.dao.entity.User;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * @author zhangbs
  * @since 2020-10-16
  */
-@Repository
+//@Repository
 public interface UserMapper extends BaseMapper<User> {
 
     /**
