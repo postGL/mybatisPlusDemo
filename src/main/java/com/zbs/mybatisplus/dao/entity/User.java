@@ -47,6 +47,13 @@ public class User extends Model<User> {
     @ApiModelProperty(value = "性别")
     private SexEnum sex;
 
+    /**
+     * tinyint一个字节   smallint  两个字节   MEDIUMINT三个字节   int四个字节
+     * 不管 tinyint 后面的数字是多少，它存储长度=2^（1字节）=2^8，即存储范围是 -2^7 到 2^7 - 1 -128~127
+     *
+     * tinyint(1) 和 tinyint(4) 中的1和4并不表示存储长度，只有字段指定zerofill是有用，
+     * 如tinyint(4)，如果实际值是2，如果列指定了zerofill，查询结果就是0002，左边用0来填充。
+     */
     @ApiModelProperty(value = "是否成年")
     private Boolean isAdult;
 
