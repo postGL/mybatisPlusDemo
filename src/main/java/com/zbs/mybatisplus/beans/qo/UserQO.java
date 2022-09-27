@@ -35,4 +35,8 @@ public class UserQO {
     @ApiModelProperty(value = "性别")
     private Integer sex;
 
+    @ApiModelProperty(value = "是否成年")
+//    private boolean isAdult11;  isAdult11这个名字 swagger-ui出不来
+    private boolean adult;
+
 }

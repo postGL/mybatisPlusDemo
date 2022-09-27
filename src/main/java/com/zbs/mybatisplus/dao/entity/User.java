@@ -47,6 +47,9 @@ public class User extends Model<User> {
     @ApiModelProperty(value = "性别")
     private SexEnum sex;
 
+    @ApiModelProperty(value = "是否成年")
+    private Boolean isAdult;
+
     @ApiModelProperty(value = "是否删除,1：删除；0：未删除")
     @TableLogic(value = "1", delval = "0")
     private Integer isDelete;

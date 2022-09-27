@@ -22,7 +22,6 @@ import java.util.List;
  * <p>
  * controller
  * </p>
- *
  * @author zhangbs
  * @since 2020-10-16
  */
@@ -39,8 +38,8 @@ public class UserController {
 
     @ApiOperation(value = "分页查询列表")
     @GetMapping("/list")
-    public AjaxResult list(Page<User> page, UserQO userQO) {
-        return AjaxResult.success(userService.selectPageList(page, userQO));
+    public AjaxResult list(int pageSize, int pageNum, UserQO userQO) {
+        return AjaxResult.success(userService.selectPageList(new Page<>(pageNum, pageSize), userQO));
     }
 
     @ApiOperation(value = "测试and和or")
