@@ -56,12 +56,27 @@ public class UserController {
          */
         LambdaQueryWrapper<User> userQueryWrapper = new LambdaQueryWrapper<>();
         userQueryWrapper.eq(User::getSex, user.getSex());
+        // 如果没有上一句，会自动去除and
         userQueryWrapper.and(i -> i
                 .eq(User::getName, user.getName())
                 .or()
                 .eq(User::getAge, user.getAge())
         );
         List<User> list = userMapper.selectList(userQueryWrapper);
+
+        /**
+         * SELECT
+         * 	*
+         * FROM
+         * USER
+         * WHERE
+         * 	( NAME = ? OR age = ? )
+         */
+        LambdaQueryWrapper<User> userQueryWrapper1 = new LambdaQueryWrapper<>();
+        userQueryWrapper1.eq(User::getName, user.getName())
+                .or()
+                .eq(User::getAge, user.getAge());
+        List<User> list1 = userMapper.selectList(userQueryWrapper1);
 
         /**
          * SELECT
