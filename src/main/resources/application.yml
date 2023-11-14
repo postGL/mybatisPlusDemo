@@ -18,8 +18,11 @@ logging:
 mybatis-plus:
   mapper-locations: classpath*:xml/*.xml
   type-aliases-package: com.zbs.mybatisplus.dao.mapper
+  configuration:
+
   global-config:
     db-config:
+      # logic-delete-field，全局配置查询时sql条件拼接isDelete = 0，否则使用@TableLogic(value = "0",delval = "1")单独设置在实体属性上，同样效果。
       logic-delete-field: isDelete
       logic-delete-value: 1
       logic-not-delete-value: 0
