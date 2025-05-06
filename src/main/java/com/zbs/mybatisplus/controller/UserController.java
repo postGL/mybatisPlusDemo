@@ -9,7 +9,7 @@ import com.zbs.mybatisplus.common.AjaxResult;
 import com.zbs.mybatisplus.common.enums.SexEnum;
 import com.zbs.mybatisplus.dao.entity.User;
 import com.zbs.mybatisplus.dao.mapper.UserMapper;
-import com.zbs.mybatisplus.service.IUserService;
+import com.zbs.mybatisplus.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @Autowired
     private UserMapper userMapper;
@@ -97,14 +97,18 @@ public class UserController {
     }
 
     @ApiOperation(value = "测试getOne")
-    @PostMapping(value = "/getOne")
+    @GetMapping(value = "/getOne")
     public void testGetOne() {
         // 除了有getById进行主键查询。还有getOne方法
         LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(User::getName, "张大侠");
         // false：据 Wrapper，查询一条记录；有多个 result 是否抛出异常
         // true(默认值)：默认取第一条数据返回，所以当我们查询为多条数据时，默认返回第一条
-        userService.getOne(lambdaQueryWrapper, false);
+	    User one = userService.getOne(lambdaQueryWrapper, false);
+	    System.out.println(one);
+
+	    List<User> userIdList = userService.list(new QueryWrapper<User>().lambda().eq(User::getName, "张大侠").select(User::getId));
+	    System.out.println(userIdList);
     }
 
     @ApiOperation(value = "获取详情")

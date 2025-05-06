@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zbs.mybatisplus.beans.qo.UserQO;
 import com.zbs.mybatisplus.dao.entity.User;
 import com.zbs.mybatisplus.dao.mapper.UserMapper;
-import com.zbs.mybatisplus.service.IUserService;
+import com.zbs.mybatisplus.service.UserService;
 import com.zbs.mybatisplus.util.MyBeanUtil;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
  * @since 2020-10-16
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     /**
      * 分页查询列表

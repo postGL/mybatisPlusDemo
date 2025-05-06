@@ -13,7 +13,7 @@ import com.zbs.mybatisplus.dao.entity.User;
  * @author zhangbs
  * @since 2020-10-16
  */
-public interface IUserService extends IService<User> {
+public interface UserService extends IService<User> {
 
     /**
      * 分页查询列表
